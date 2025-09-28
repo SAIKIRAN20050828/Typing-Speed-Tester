@@ -1,0 +1,32 @@
+This is a small, independent back-end server with one single responsibility: to provide random paragraphs for the typing test. It's a classic example of a microservice.
+
+Purpose: A dedicated API for serving text data.
+
+Contents: server.js, package.json.
+
+Code for server.js:
+This code is identical to the back-end in the 2-repository split. It's already a perfect microservice.
+
+// server.js
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+
+const paragraphs = [
+    "A paragraph is a collection of words combined together.",
+    "The quick brown fox jumps over the lazy dog.",
+    "Technology has revolutionized the way we live and work."
+];
+
+// The single endpoint for this microservice
+app.get('/api/paragraph', (req, res) => {
+    const randomIndex = Math.floor(Math.random() * paragraphs.length);
+    res.json({ text: paragraphs[randomIndex] });
+});
+
+app.listen(PORT, () => {
+    console.log(`Paragraph service running on http://localhost:${PORT}`);
+});
