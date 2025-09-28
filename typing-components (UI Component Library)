@@ -1,0 +1,26 @@
+This repository doesn't contain a full application. Instead, it holds small, reusable, self-contained pieces of the UI. This practice ensures a consistent look and feel across larger applications.
+
+Purpose: Store and manage reusable UI components like buttons and displays.
+
+Contents: Separate folders for each component (e.g., /timer-display, /reset-button).
+
+Example Component: /timer-display
+
+timer.html:
+<div class="timer-component">00:00:00</div>
+timer.css:
+.timer-component {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    font-family: monospace;
+}
+timer.js (A simple class to manage its state):
+class TimerDisplay {
+    constructor(element) {
+        this.element = element;
+    }
+    update(timeString) {
+        this.element.textContent = timeString;
+    }
+}
