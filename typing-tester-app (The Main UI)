@@ -1,0 +1,35 @@
+This is the central front-end application. Its main job is to manage the overall state (like the timer and score) and to assemble the user interface by fetching data from the paragraph-service and using components from the typing-components library.
+
+Purpose: Manages the core application logic and integrates the other services.
+
+Contents: index.html, style.css, app.js.
+
+Example app.js:
+This script would fetch the paragraph from the service and control the main logic.
+
+// app.js
+
+// Function to fetch paragraph from the dedicated microservice
+async function fetchParagraph() {
+    try {
+        const response = await fetch('http://localhost:3000/api/paragraph');
+        const data = await response.json();
+        document.querySelector("#origin-text p").innerHTML = data.text;
+    } catch (error) {
+        console.error("Error fetching paragraph:", error);
+    }
+}
+
+// Imagine this function loads a UI component from your library
+function loadTimerComponent() {
+    const clockContainer = document.getElementById("clock");
+    // In a real app, you might fetch and inject the component's HTML/CSS/JS
+    clockContainer.innerHTML = `<div class="timer">00:00:00</div>`;
+}
+
+// Initialize the application
+window.onload = () => {
+    fetchParagraph();
+    loadTimerComponent();
+    // ... add event listeners for starting the test
+};
